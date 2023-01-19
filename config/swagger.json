@@ -1,0 +1,163 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "Reward MicroService",
+        "description": "MicroService to mange Rewards",
+        "license": {
+            "name": "Leewayhertz",
+            "url": "http://leewayhertz.com"
+        }
+    },
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/activities": {
+            "post": {
+                "description": "This is an api endpoint which is used to save activity to the database.",
+                "summary": "Save activity",
+                "tags": [
+                    "Activity"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "addActivity parameters",
+                        "description": "Parameters to store activity in db.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/new-activity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/entries": {
+            "get": {
+                "description": "This is an api endpoint which is used to get all entriess from database.",
+                "summary": "Get entries list",
+                "tags": [
+                    "Rewards"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name":"gettrId",
+                        "in":"query",
+                        "type": "string",
+                        "description": ""
+
+                    },
+                    {
+                        "name": "activity",
+                        "in": "query",
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "timeSlot",
+                        "in": "query",
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "reward",
+                        "in": "query",
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "number",
+                        "default": "25",
+                        "description": ""
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "type": "number"
+                    },
+                    
+                    {
+                        "name": "sortingKey",
+                        "in": "query",
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "sortingOrder",
+                        "in": "query",
+                        "type": "string",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "new-activity": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "count": {
+                    "type": "number"
+                },
+                "ticket": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "background": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "new-activity"
+            }
+        }
+    }
+}
