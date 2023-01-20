@@ -23,4 +23,24 @@ export default class Index {
       httpConstants.RESPONSE_CODES.OK
     );
   }
+
+  async getDensityOfWord(request, response) {
+    const [error, wordsResponse] = await Utils.parseResponse(
+      new BLManager().getDensityOfWord(request.query)
+    );
+    if (!wordsResponse) {
+      return HTTPHandler.error(
+        response,
+        error,
+        error && error.message ? error.message : error
+      );
+    }
+    return HTTPHandler.response(
+      response,
+      wordsResponse,
+      apiSuccessMessage.FETCH_SUCCESS,
+      httpConstants.RESPONSE_STATUS.SUCCESS,
+      httpConstants.RESPONSE_CODES.OK
+    );
+  }
 }

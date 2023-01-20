@@ -21,4 +21,9 @@ module.exports = (app) => {
     ValidationManager.validateURL,
     new StringModule().getTextSuggestions
   );
+  app.get(
+    "/get-word-density",
+    ValidationManager.validateURL,
+    new StringModule().getDensityOfWord
+  );
 };

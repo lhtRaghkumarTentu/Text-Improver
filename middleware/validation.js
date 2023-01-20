@@ -4,7 +4,7 @@ import HTTPHandler from "../app/utils/HTTPHandler";
 module.exports = {
   validateURL: async (req, res, next) => {
     const schema = yup.object().shape({
-      url: yup.string().required(),
+      url: yup.string().url().required(),
     });
     await validate(schema, req.query, res, next);
   },
